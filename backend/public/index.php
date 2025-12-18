@@ -11,4 +11,6 @@ $router = new Router();
 
 $router->get("/", [AbstractController::class, 'initialize']);
 
+
+
 $router->dispatch();
