@@ -8,6 +8,6 @@ class AbstractController
 {
     public function initialize(): string
     {
-        return "STARTED!";
+        return json_encode('STARTED!');
     }
 }
