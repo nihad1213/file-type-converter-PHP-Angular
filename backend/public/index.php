@@ -21,4 +21,9 @@ $router->post('/api/v1/image/gif-to-png', [
     'gifToPng'
 ]);
 
+$router->post('/api/v1/image/jpeg-to-bmp', [
+    ImageTypeConverterController::class,
+    'jpegToBmp'
+]);
+
 $router->dispatch();
