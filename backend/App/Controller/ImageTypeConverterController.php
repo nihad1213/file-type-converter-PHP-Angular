@@ -3,9 +3,11 @@
 declare(strict_types=1);
 
 namespace App\Controller;
+
 use Throwable;
 use App\Service\Image\GifToPngService;
 use App\Service\Image\BmpToJpegService;
+use App\Service\Image\JpegToBmpService;
 
 class ImageTypeConverterController extends AbstractController
 {
@@ -21,6 +23,10 @@ class ImageTypeConverterController extends AbstractController
             ]);
         } catch (Throwable $e) {
             http_response_code(400);
+            echo json_encode([
+                'status'  => 'error',
+                'message' => $e->getMessage()
+            ]);
         }
     }
 
@@ -28,6 +34,25 @@ class ImageTypeConverterController extends AbstractController
     {
         try {
             $service = new GifToPngService();
+            $fileName = $service->convert($_FILES['image']);
+            echo json_encode([
+                'status' => 'success',
+                'file'   => $fileName,
+                'path'   => '/storage/temp/' . $fileName
+            ]);
+        } catch (Throwable $e) {
+            http_response_code(400);
+            echo json_encode([
+                'status'  => 'error',
+                'message' => $e->getMessage()
+            ]);
+        }
+    }
+
+    public function jpegToBmp(): void
+    {
+        try {
+            $service = new JpegToBmpService();
             $fileName = $service->convert($_FILES['image']);
             echo json_encode([
                 'status' => 'success',
