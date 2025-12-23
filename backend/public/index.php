@@ -2,6 +2,7 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
+use App\Controller\DocumentTypeConverterController;
 use Src\Router;
 use App\Controller\HomeController;
 use App\Controller\ImageTypeConverterController;
@@ -59,6 +60,17 @@ $router->post('api/v1/image/png-to-jpeg', [
 $router->post('api/v1/image/webp-to-jpeg', [
     ImageTypeConverterController::class,
     'webpToJpeg'
+]);
+
+// Document Routes
+$router->post('api/v1/document/epub-to-pdf', [
+    DocumentTypeConverterController::class,
+    'epubToPdf'
+]);
+
+$router->post('api/v1/document/excel-to-pdf', [
+    DocumentTypeConverterController::class,
+    'excelToPdf'
 ]);
 
 $router->dispatch();
