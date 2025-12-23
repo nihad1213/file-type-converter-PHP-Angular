@@ -83,5 +83,9 @@ $router->post('api/v1/document/pdf-to-word', [
     'pdfToWord'
 ]);
 
+$router->post('api/v1/document/word-to-pdf', [
+    DocumentTypeConverterController::class,
+    'wordToPdf'
+]);
 
 $router->dispatch();
