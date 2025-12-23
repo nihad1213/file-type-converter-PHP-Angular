@@ -14,6 +14,7 @@ use App\Service\Image\JpegToWebpService;
 use App\Service\Image\JpgToJpegService;
 use App\Service\Image\PngToGifService;
 use App\Service\Image\PngToJpegService;
+use App\Service\Image\WebpToJpegService;
 
 class ImageTypeConverterController extends AbstractController
 {
@@ -187,6 +188,23 @@ class ImageTypeConverterController extends AbstractController
             ]); 
         }
     }
-
-
+    
+    public function webpToJpeg(): void
+    {
+        try {
+            $service = new WebpToJpegService();
+            $fileName = $service->convert($_FILES['image']);
+            echo json_encode([
+                'status' => 'success',
+                'file' => $fileName,
+                'path' => '/storage/temp/' . $fileName
+            ]);
+        } catch (Throwable $e) {
+            http_response_code(400);
+            echo json_encode([
+                'status'  => 'error',
+                'message' => $e->getMessage()
+            ]); 
+        }
+    }
 }
