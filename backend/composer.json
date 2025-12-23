@@ -17,6 +17,7 @@
         "mpdf/mpdf": "^8.2",
         "indy2kro/php-epub": "^1.0",
         "hans-thomas/epub": "^1.0",
-        "phpoffice/phpspreadsheet": "^5.3"
+        "phpoffice/phpspreadsheet": "^5.3",
+        "smalot/pdfparser": "^2.12"
     }
 }

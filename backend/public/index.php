@@ -73,4 +73,15 @@ $router->post('api/v1/document/excel-to-pdf', [
     'excelToPdf'
 ]);
 
+$router->post('api/v1/document/pdf-to-excel', [
+    DocumentTypeConverterController::class,
+    'pdfToExcel'
+]);
+
+$router->post('api/v1/document/pdf-to-word', [
+    DocumentTypeConverterController::class,
+    'pdfToWord'
+]);
+
+
 $router->dispatch();
