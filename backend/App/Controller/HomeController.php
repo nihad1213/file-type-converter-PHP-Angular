@@ -6,7 +6,7 @@ namespace App\Controller;
 
 class HomeController
 {
-    public function home()
+    public function home(): string
     {
         return json_encode("STARTED!");
     }
