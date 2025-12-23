@@ -8,6 +8,7 @@ use Throwable;
 use App\Service\Image\GifToPngService;
 use App\Service\Image\BmpToJpegService;
 use App\Service\Image\JpegToBmpService;
+use App\Service\Image\JpegToJpgService;
 
 class ImageTypeConverterController extends AbstractController
 {
@@ -58,6 +59,25 @@ class ImageTypeConverterController extends AbstractController
                 'status' => 'success',
                 'file'   => $fileName,
                 'path'   => '/storage/temp/' . $fileName
+            ]);
+        } catch (Throwable $e) {
+            http_response_code(400);
+            echo json_encode([
+                'status'  => 'error',
+                'message' => $e->getMessage()
+            ]);
+        }
+    }
+
+    public function jpegToJpg(): void
+    {
+        try {
+            $service = new JpegToJpgService();
+            $fileName = $service->convert($_FILES['image']);
+            echo json_encode([
+                'status' => 'success',
+                'file' => $fileName,
+                'path' => '/storage/temp/' . $fileName
             ]);
         } catch (Throwable $e) {
             http_response_code(400);

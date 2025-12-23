@@ -26,4 +26,9 @@ $router->post('/api/v1/image/jpeg-to-bmp', [
     'jpegToBmp'
 ]);
 
+$router->post('api/v1/image/jpeg-to-jpg', [
+    ImageTypeConverterController::class,
+    'jpegTpJpg'
+]);
+
 $router->dispatch();
